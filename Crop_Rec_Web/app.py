@@ -20,7 +20,7 @@ def index():
 def get_prediction():
 
     N = request.form['Nitrogen']
-    P = request.form['Phosporus']
+    P = request.form['Phosphorus']
     K = request.form['Potassium']
     temp = request.form['Temperature']
     humidity = request.form['Humidity']
@@ -30,7 +30,9 @@ def get_prediction():
     data = np.array([[N, P, K, temp, humidity, ph, rainfall]])
     prediction = model.predict(data)
 
-    result = "{} is the best crop to be cultivated right there".format(prediction)
+
+    result_str = prediction[0].capitalize()
+    result = "{}".format(result_str)
     return render_template('index.html',result = result)
     
 if __name__ == "__main__":
